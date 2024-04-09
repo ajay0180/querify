@@ -1,0 +1,23 @@
+services:
+  client:
+    build: ./client
+    
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - ./client:/usr/src/app
+    
+  server:
+    build: ./server
+
+    container_name: querify-api
+
+    ports:
+      - "4000:4000"
+    
+    volumes:
+      - ./server:/usr/src/app
+
+    
+    
