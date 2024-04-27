@@ -397,7 +397,7 @@ section{
     border-radius:50%;
 }
 .circle_sticky h2{
-    font-size:clamp(2rem,20cqi, 20rem);
+    font-size:clamp(2rem,15cqi, 20rem);
     color:var(--background);
     z-index:1;
 }

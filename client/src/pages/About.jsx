@@ -1,6 +1,6 @@
 import "../styles/About.css";
 import Navbar from "../components/Navbar";
-import {FaArrowRightLong, pinkgreenplant, pinkplant,cloud ,sea, bottle, back, circleVid, aboutVid1, aboutImg1,aboutImg3, aboutImg6, aboutImg8, aboutImgSmall} from "../assets/assets";
+import {FaArrowRightLong, pinkgreenplant, pinkplant,cloud ,sea, bottle, back, circleVid, aboutVid1, aboutEnd,aboutImg1,aboutImg3, aboutImg6, aboutImg8, aboutImgSmall} from "../assets/assets";
 import { useEffect, useRef, useState } from "react";
 import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
 import "../styles/locomotive-scroll.css";
@@ -242,10 +242,10 @@ export default function About(){
                                 
                                 <div className="anim2 hero_1 w-[200px] max-h-[450px] overflow-hidden">
                                     <h5 className="text-[12px]">01.</h5>
-                                    <h2 className="text-[18px]">Sustainability</h2>
-                                    <p className="text-[12px] w-full capitalize my-[10px]  tracking-wide text-[#5e5e5e] leading-[15px]">Empower effortlessly with Querify's dynamic surveys.</p>
+                                    <h2 className="text-[18px]">Subtle Serenity</h2>
+                                    <p className="text-[12px] w-[95%] capitalize my-[10px]  tracking-wide text-[#5e5e5e] leading-[15px]">Discover the quiet elegance of Inquiry Insights.</p>
                                     <div className="image-wrapper w-[85%] h-[270px] ">
-                                        <img src={aboutImgSmall} className="w-full imgAnim1 h-[95%] object-cover" alt="img1" />
+                                        <img src={aboutImgSmall} className="w-full imgAnim2 h-[95%] object-cover" alt="img1" />
                                     </div>
                                 </div>  
 
@@ -257,7 +257,7 @@ export default function About(){
                                     <div className="anim2 imgAnim2">
                                         <video src={aboutVid1} className=" w-[100%] object-left relative h-[550px] object-cover" autoPlay={true} muted={true} loop={true} style={{opacity:1}} alt="img"/>
                                         <p className="max-w-[48%]  text-[15px] font-semibold my-3">
-                                            Commited to sustainability and ecofriendly choices for better tommorow
+                                            Embark on journey of Subtle Elegance of Profound Inquiry Insights.
                                         </p>
                                     </div>
                                     
@@ -295,14 +295,14 @@ export default function About(){
                                 <div className="min-h-full min-w-full relative">
                                     
                                     <motion.div 
-                                        className="w-full text-left absolute top-0 left-0  overflow-hidden leading-[75px] mt-[30px]"
+                                        className="w-full text-left absolute top-0 left-0  overflow-hidden leading-[83px] mt-[30px]"
                                     >
                                         
                                         <motion.p className=" z-[2] text-[62px] whitespace-nowrap overflow-hidden tracking-tight " whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:1, damping:50}}> Craft captivating surveys effortlessly.</motion.p>
                                         <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight " whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:1, damping:50}}> Your hub for captivating surveys and forms.</motion.p>
                                         <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight  " whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:1, damping:50}}> Create dynamic, experiences effortlessly.</motion.p>
-                                        <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tigth  " whileInView={{y:0,opacity:1}}initial={{y:50,opacity:0}} transition={{delay:1, damping:50}}> Create dynamic, experiences effortlessly.</motion.p>
                                         <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight " whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:1, damping:50}}> Revolutionize data with seamless customization.</motion.p>
+                                        <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tigth  " whileInView={{y:0,opacity:1}}initial={{y:50,opacity:0}} transition={{delay:1, damping:50}}> Transform data with effortless customization</motion.p>
                                     </motion.div>
                                     
                                 </div>   
@@ -354,24 +354,25 @@ export default function About(){
                                 <div className="min-h-full min-w-full relative">
                                     
                                     <motion.div 
-                                        className="w-full text-left absolute top-0 left-0  overflow-hidden leading-[75px] mt-[30px]"
+                                        className="w-full text-left absolute top-0 left-0  overflow-hidden leading-[83px] mt-[30px]"
                                     >
                                         <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight text-right" whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:0.8, damping:50}}> Craft captivating surveys effortlessly.</motion.p>
-                                        <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight text-right" whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:0.8, damping:50}}> Your hub for captivating surveys and forms.</motion.p>
                                         <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight  text-right" whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:0.8, damping:50}}> Create dynamic, experiences effortlessly.</motion.p>
-                                        <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight  text-right" whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:0.8, damping:50}}> Create dynamic, experiences effortlessly.</motion.p>
+                                        <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight text-right" whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:0.8, damping:50}}> Your hub for captivating surveys and forms.</motion.p>      
+                                     
+                                        <motion.p className=" text-[62px] whitespace-nowrap overflow-hidden tracking-tight  text-right" whileInView={{y:0,opacity:1}} initial={{y:50,opacity:0}} transition={{delay:0.8, damping:50}}> Revolutionize your data management with ease.</motion.p>
                                     </motion.div>
                                     
                                 </div>   
                         </div>
 
                         <div className="pictures px-[5vw] py-[3vw] flex mt-[10vh] relative">
-                            <div className="blurCont absolute w-full h-full translate-x-[8%] translate-y-[25%] z-[10]">
+                            <div className="blurCont absolute w-full h-full translate-x-[15%] translate-y-[45%] z-[10]">
                                 <div 
-                                    className="blurItem-1 absolute right-0  w-[400px]  h-[400px] bg-[#ec2d02df] blur-[20px] rounded-full  bottom-[-50%]"
+                                    className="blurItem-1 absolute right-0  w-[400px]  h-[400px] bg-[#03618f] blur-[30px] rounded-full  bottom-[-50%]"
                                 />
                                 <div 
-                                    className="blurItem-2 absolute w-[400px]  h-[400px] bg-[#ec2d02df] blur-[20px] rounded-full right-0  bottom-[-50%]"
+                                    className="blurItem-2 absolute w-[400px]  h-[400px] bg-[#03618f] blur-[30px] rounded-full right-0  bottom-[-50%]"
                                 />
                               
                             </div>
@@ -383,11 +384,11 @@ export default function About(){
 
                                 <div div className="w-full h-full  flex items-center justify-between">
                                     <div  className=" w-[30vw] h-[30vw] mb-[1vw] flex items-center justify-center">
-                                        <img  src={aboutImg6} alt="img" className="w-full h-full object-contain object-center"/> 
+                                        <img  src={aboutImg6} alt="img" className="w-full h-full imgAnim1 object-contain object-center"/> 
                                     </div>
                                 
                                     <div className=" w-[30vw] h-[30vw] mb-[1vw]  flex items-center justify-center">
-                                        <img src={aboutImg8} alt="img" className="w-full h-full object-cover object-center"/> 
+                                        <img src={aboutImg8} alt="img" className="w-full h-full imgAnim1 object-cover object-center"/> 
                                     </div>
                                 
                                 </div>
@@ -396,10 +397,9 @@ export default function About(){
 
                         </div>
                         <div className="w-full h-max relative">
-                            <div className="rotate-[0deg]">
+                            <div className="rotate-[0deg] ">
                                 <Marquee/> 
                             </div>
-                            
                         </div>
                         
 
@@ -407,8 +407,8 @@ export default function About(){
                             <Showcase/>
                         </div>                          
 
-                        <div className="future w-full h-[100vh] bg-white flex items-center justify-center flex-col relative">
-                                    <video id="vid" src={back} autoPlay={true} muted={true} loop={true} playsInline={true} className="opacity-0 min-h-full min-w-full object-cover" />
+                        <div className="future w-full h-[100vh] bg-[#fafafa] flex items-center justify-center flex-col relative">
+                                    <video id="vid" src={aboutEnd} autoPlay={true} muted={true} loop={true} playsInline={true} className="opacity-0 min-h-full min-w-full object-cover" />
 
                                     <div className="absolute flex flex-col justify-center items-center min-w-[200px]">
                                         <p className="w-[200px] px-2 py-2 text-[20px] text-white flex items-center justify-center cursor-pointer mix-blend-difference">

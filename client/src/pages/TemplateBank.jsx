@@ -73,10 +73,10 @@ export default function TemplateBank(){
 
         if(alanInstance == null || alanResponse == null) return;
 
-        if(templates.length === 0){
-            alanInstance.playText("We do not have any templates currently");
-            return;
-        }
+        // if(templates.length === 0){
+        //     alanInstance.playText("We do not have any templates currently");
+        //     return;
+        // }
         
         if(alanResponse.command === "readTemplates"){
 

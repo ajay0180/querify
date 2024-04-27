@@ -57,7 +57,7 @@ export default function DesignSubMenu() {
           primary: 'green',
           secondary: '#FFFAEE',
         },
-    });
+      });
 
     }
 

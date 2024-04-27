@@ -4,7 +4,7 @@ import { gsap,ScrollTrigger } from "gsap/all";
 import  animateVideo,{animate} from "../utils/animate"
 import mainVideo from "../assets/mainVideo.mp4";
 import { useLocation, useNavigate } from "react-router-dom";
-import {home9,home10,home11,home12, HeroVid} from "../assets/assets"
+import {home9,home10,home11,home12, HeroVid, heroEndVid} from "../assets/assets"
 import {projects} from "../data/projects";
 import { animateProjects,scrollBlogPosts,scrollCircle,scrollDiscover } from "../utils/animate";
 import { blogPosts } from "../data/projects";
@@ -554,10 +554,10 @@ export default function Home(){
                 <section ref={refBlogSection} id="blog">
                     <div className="blog_hero">
                         <h2 className="text_reveal">
-                            <span className="reveal_span_blog">B</span>
-                            <span className="reveal_span_blog">L</span>
-                            <span className="reveal_span_blog">O</span>
-                            <span className="reveal_span_blog">G</span>
+                            <span className="reveal_span_blog font-light">B</span>
+                            <span className="reveal_span_blog font-light">L</span>
+                            <span className="reveal_span_blog font-light">O</span>
+                            <span className="reveal_span_blog font-light">G</span>
                         </h2>
                     </div>
 
@@ -565,7 +565,7 @@ export default function Home(){
                     <div ref={refBlog0} className="blog_post">
                         <div ref={refBlogImage0} className="post">
                             <div  className="post_image_container">
-                                <img src={home9} alt="blogImg" className="blog_post_image"/>
+                                <img  src={home9} alt="blogImg" className="blog_post_image backdrop-brightness-75"/>
                             </div>
                                         
 
@@ -575,7 +575,7 @@ export default function Home(){
                     <div ref={refBlog1} className="blog_post">
                         <div ref={refBlogImage1} className="post">
                             <div className="post_image_container">
-                                <img src={home10} alt="blogImg" className="blog_post_image"/>
+                                <img src={home10} alt="blogImg" className="blog_post_image backdrop-brightness-75"/>
                             </div>
                                         
 
@@ -584,7 +584,7 @@ export default function Home(){
                     <div ref={refBlog2} className="blog_post">
                         <div ref={refBlogImage2} className="post">
                             <div className="post_image_container">
-                                <img src={home12} alt="blogImg" className="blog_post_image"/>
+                                <img src={home12} alt="blogImg" className="blog_post_image backdrop-brightness-75"/>
                             </div>
                                 
                         </div>
@@ -596,7 +596,12 @@ export default function Home(){
                 <section ref={refCircleSection} id="circle_section">
 
                     <div className="circle_sticky">
-                        <h2 className="text-[#fafafa] tracking-tighter">Q <sup className="text-[#fafafa]">*</sup></h2>
+                     
+                            <h2 className="text-[#fafafa] tracking-tighter leading-[200px] text-[60px]">
+                                Revolutionize <br/>Surveying<br/> Now
+                            </h2>
+       
+                       
                         <div className="circle_container">
                             <div ref={refCircle} className="circle_home">
 
@@ -608,7 +613,7 @@ export default function Home(){
                 {/* Discover */}
                 <section id="discover">
                     <div ref={refDiscoverContainer} className="discover_container">
-                        <p ref={refDiscoverTextLeft} className="text_left">THIS SITE WAS DESIGNED BY ********</p>
+                        <p ref={refDiscoverTextLeft} className="text_left">THIS SITE WAS DESIGNED BY QUERIFIER COMMUNITY</p>
                         <p ref={refDiscoverTextRight} className="text_right">LET'S SURVEY THE FUTURE TOGETHER</p>
 
                         <div className="mt-7">
@@ -622,7 +627,7 @@ export default function Home(){
                 <section id="end_video">
                     <div class="shim"></div>
                     <div className="end_video_container">
-                    <video className="end_video"   autoPlay={true} muted={true} loop={true} playsInline={true} src={endVid}></video>
+                    <video className="end_video brightness-75"   autoPlay={true} muted={true} loop={true} playsInline={true} src={heroEndVid}></video>
                     </div>
                 </section>
             
@@ -632,13 +637,13 @@ export default function Home(){
                     <div className="footer_container">
                         <div className="footer_title">
                             <h2 className="text_reveal">
-                                <span className="reveal_span_endText">Q</span>
-                                <span className="reveal_span_endText">U</span>
-                                <span className="reveal_span_endText">E</span>
-                                <span className="reveal_span_endText">R</span>
-                                <span className="reveal_span_endText">I</span>
-                                <span className="reveal_span_endText">F</span>
-                                <span className="reveal_span_endText">Y</span>
+                                <span className="reveal_span_endText font-light">Q</span>
+                                <span className="reveal_span_endText font-light">U</span>
+                                <span className="reveal_span_endText font-light">E</span>
+                                <span className="reveal_span_endText font-light">R</span>
+                                <span className="reveal_span_endText font-light">I</span>
+                                <span className="reveal_span_endText font-light">F</span>
+                                <span className="reveal_span_endText font-light">Y</span>
                             </h2>
                         </div>
                     </div>

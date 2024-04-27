@@ -99,6 +99,8 @@ import sCMarket from "./a_assets/sCMarket.avif"
 import sCEducation from "./a_assets/sCEducation.avif"
 import sCCustomer from "./a_assets/sCCustomer.jpg";
 import aboutImgSmall from "./a_assets/aboutImgSmall.webp";
+import heroEndVid from "./heroEndVid.mp4";
+import aboutEnd from "./a_assets/aboutEnd.mp4";
 
 export {
     IoPersonSharp,
@@ -201,6 +203,8 @@ export {
     sCHealthcare,
     sCGov,
     sCCustomer,
-    aboutImgSmall
+    aboutImgSmall,
+    heroEndVid,
+    aboutEnd,
 
 };
