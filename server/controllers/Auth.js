@@ -128,8 +128,10 @@ exports.signup = async(req,res)=>{
 
         // get most recent otp from db
         
-        var recentOtp = await Otp.find({email}).sort({timeStamp : -1}).limit(1); // sort in descending order on the basis of createdAt field's value and extract the first one from it .. giving the most recent otpObj
+        // var recentOtp = await Otp.find({email}).sort({timeStamp : -1}).limit(1); // sort in descending order on the basis of createdAt field's value and extract the first one from it .. giving the most recent otpObj
 
+        var recentOtp = await Otp.findOne({email});
+        
         console.log("recentOtp ---------->",recentOtp);
 
 
@@ -144,7 +146,7 @@ exports.signup = async(req,res)=>{
         }
 
         // compare the actual otp with given otp
-        if(recentOtp[0].otp !== otp){
+        if(recentOtp === otp){
             console.log("otp recieved " , otp , "otp from db", recentOtp.otp)
             return res.status(400).json({
                 success:false,
