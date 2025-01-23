@@ -14,21 +14,20 @@ import Testimonials from "./Testimonials";
 import About from "./About";
 import Extra from "./Extra";
 
-
-export{
-    Dashboard,
-    Error,
-    Form,
-    FormGif,
-    FormResults,
-    Home,
-    Login,
-    Otp,
-    Preview,
-    ShareForm,
-    Signup,
-    TemplateBank,
-    Testimonials,
-    About,
-    Extra
-}
+export {
+  Dashboard,
+  Error,
+  Form,
+  FormGif,
+  FormResults,
+  Home,
+  Login,
+  Otp,
+  Preview,
+  ShareForm,
+  Signup,
+  TemplateBank,
+  Testimonials,
+  About,
+  Extra,
+};

@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect,useRef } from "react";
+import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
@@ -12,7 +12,15 @@ import {
   Checkbox,
   Range,
 } from "../components/FormQue";
-import { Dog, formNotStartedImg, ResponseLimitImg,formImg1,MdOutlineCancel,  IoIosArrowDown,IoIosArrowUp} from "../assets/assets";
+import {
+  Dog,
+  formNotStartedImg,
+  ResponseLimitImg,
+  formImg1,
+  MdOutlineCancel,
+  IoIosArrowDown,
+  IoIosArrowUp,
+} from "../assets/assets";
 import useResponseStore from "../stores/ResponseStore";
 import { motion, useAnimate, useAnimation } from "framer-motion";
 import {
@@ -26,30 +34,36 @@ import { IoIosArrowRoundBack } from "../assets/assets";
 import { ClipLoader } from "react-spinners";
 import useFormStore from "../stores/FormStore";
 import useAlanStore from "../stores/AlanStore.js";
-import wordsToNumbers from 'words-to-numbers';
+import wordsToNumbers from "words-to-numbers";
 
 export default function Form() {
-
-
-
-  const {alanInstance, setAlanInstance, alanResponse, setAlanResponse, currentTemp, setCurrentTemp} = useAlanStore((state)=>({
-    alanInstance : state.alanInstance,
+  const {
+    alanInstance,
+    setAlanInstance,
+    alanResponse,
+    setAlanResponse,
+    currentTemp,
+    setCurrentTemp,
+  } = useAlanStore((state) => ({
+    alanInstance: state.alanInstance,
     setAlanInstance: state.setAlanInstance,
     alanResponse: state.alanResponse,
     setAlanResponse: state.setAlanResponse,
-    currentTemp : state.currentTemp,
-    setCurrentTemp : state.setCurrentTemp,
+    currentTemp: state.currentTemp,
+    setCurrentTemp: state.setCurrentTemp,
   }));
 
-  const {currentQue, updateCurrentQue,popup, setPopup} = useFormStore((state)=>({
-    currentQue : state.currentQue,
-    updateCurrentQue: state.updateCurrentQue,
-    popup: state.popup,
-    setPopup: state.setPopup,
-  }))
+  const { currentQue, updateCurrentQue, popup, setPopup } = useFormStore(
+    (state) => ({
+      currentQue: state.currentQue,
+      updateCurrentQue: state.updateCurrentQue,
+      popup: state.popup,
+      setPopup: state.setPopup,
+    })
+  );
 
   const [windowSize, setWindowSize] = useState(window.innerWidth);
-  
+
   const [form, setForm] = useState(null);
 
   const [startTime, setStartTime] = useState(new Date().getTime());
@@ -75,7 +89,6 @@ export default function Form() {
     commentBody: "",
   });
 
-
   const [showDetailsMenu, setShowDetialsMenu] = useState(false);
 
   const location = useLocation();
@@ -90,112 +103,147 @@ export default function Form() {
 
   console.log(formId);
 
-  useEffect(()=>{
-
+  useEffect(() => {
     updateCurrentQue(form?.data[0]);
-  },[form])
+  }, [form]);
 
-
-  useEffect(()=>{
-    console.log("starting '/' animation")
+  useEffect(() => {
+    console.log("starting '/' animation");
 
     controls.start({
-      y:0,
-      opacity:1,
-    })
-  },[])
+      y: 0,
+      opacity: 1,
+    });
+  }, []);
 
+  useEffect(() => {
+    if (alanResponse === null) return;
 
-  useEffect(()=>{
-
-    if(alanResponse === null ) return;
-
-    if(alanResponse.command === "readQue"){
-
-      alanInstance.playText(`question ${form?.data.indexOf(currentQue) + 1} is ${currentQue.statement}`);
+    if (alanResponse.command === "readQue") {
+      alanInstance.playText(
+        `question ${form?.data.indexOf(currentQue) + 1} is ${
+          currentQue.statement
+        }`
+      );
 
       setAlanResponse(null);
-    } 
-
-    else if(alanResponse.command === "nextQue"){
-      updateCurrentQue(form.data.indexOf(currentQue) === form.data.length - 1 ? form.data[0] :  form.data[form.data.indexOf(currentQue) + 1]);
-    }
-
-    else if(alanResponse.command === "submitForm"){
+    } else if (alanResponse.command === "nextQue") {
+      updateCurrentQue(
+        form.data.indexOf(currentQue) === form.data.length - 1
+          ? form.data[0]
+          : form.data[form.data.indexOf(currentQue) + 1]
+      );
+    } else if (alanResponse.command === "submitForm") {
       setPopup(true);
-    }   
-
-    else if(alanResponse.command === "reachLast"){
-      updateCurrentQue(form?.data[form?.data.length -1]);
-    }
-    else if(alanResponse.command === "submitAnonymously"){
+    } else if (alanResponse.command === "reachLast") {
+      updateCurrentQue(form?.data[form?.data.length - 1]);
+    } else if (alanResponse.command === "submitAnonymously") {
       postResponse("anonymous");
-    }
-
-    else if(alanResponse.command === "giveDetails"){
+    } else if (alanResponse.command === "giveDetails") {
       setShowDetialsMenu(true);
-    }
-    else if(alanResponse.command === "queData"){
-      var data  = alanResponse.data;
-      
-      if(currentQue.type === 'email'){
-        updateResponses({[`q${form.data.indexOf(currentQue)}`] : `${data}@gmail.com`});
+    } else if (alanResponse.command === "queData") {
+      var data = alanResponse.data;
+
+      if (currentQue.type === "email") {
+        updateResponses({
+          [`q${form.data.indexOf(currentQue)}`]: `${data}@gmail.com`,
+        });
         return;
       }
-      if(currentQue.type === 'radio'){  
-        data = wordsToNumbers(alanResponse.data, {fuzzy:true});
-        updateResponses({[`q${form.data.indexOf(currentQue)}`] : `opt${data}`});
+      if (currentQue.type === "radio") {
+        data = wordsToNumbers(alanResponse.data, { fuzzy: true });
+        updateResponses({
+          [`q${form.data.indexOf(currentQue)}`]: `opt${data}`,
+        });
         return;
-      } 
-      
-      updateResponses({[`q${form.data.indexOf(currentQue)}`] : data});
+      }
+
+      updateResponses({ [`q${form.data.indexOf(currentQue)}`]: data });
       console.log(data);
     }
+  }, [alanResponse]);
 
-
-  },[alanResponse])
-
-  useEffect( ()=>{
-
-    const handleResize = ()=>{
-
-        const size = window.innerWidth;
-        setWindowSize(size);
-   
-    }
+  useEffect(() => {
+    const handleResize = () => {
+      const size = window.innerWidth;
+      setWindowSize(size);
+    };
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    return ()=> window.removeEventListener("resize",handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  },[])
+  const queProvider = () => {
+    switch (currentQue?.type) {
+      case "text":
+        return (
+          <Text
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
+      case "email":
+        return (
+          <Email
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
+      case "checkbox":
+        return (
+          <Checkbox
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
+      case "matrix":
+        return (
+          <Matrix
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
+      case "radio":
+        return (
+          <Radio
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
+      case "range":
+        return (
+          <Range
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
+      case "textarea":
+        return (
+          <Textarea
+            form={form}
+            que={currentQue}
+            key={form?.data.indexOf(currentQue) + 1}
+            idx={form?.data.indexOf(currentQue) + 1}
+          />
+        );
 
-
-  const queProvider = ()=>{
-
-
-
-    switch(currentQue?.type){
-
-        case "text" :
-            return <Text form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1}  idx={form?.data.indexOf(currentQue)+1}/> ;
-        case "email" :
-            return <Email form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1} idx={form?.data.indexOf(currentQue)+1}/> ;
-        case "checkbox" :
-            return <Checkbox form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1} idx={form?.data.indexOf(currentQue)+1}/>;
-        case "matrix" :
-            return <Matrix form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1} idx={form?.data.indexOf(currentQue)+1}/>;
-        case "radio" :
-            return <Radio form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1} idx={form?.data.indexOf(currentQue)+1}/>;
-        case "range" :
-            return <Range form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1} idx={form?.data.indexOf(currentQue)+1}/> ;
-        case "textarea" :
-            return <Textarea form={form} que={currentQue} key={form?.data.indexOf(currentQue)+1} idx={form?.data.indexOf(currentQue)+1}/>;
- 
-        default:
-            return ""
+      default:
+        return "";
     }
-}
+  };
 
   console.log("current que ", currentQue);
 
@@ -364,7 +412,7 @@ export default function Form() {
       });
       setLoading2(false);
       navigate("/submissionSucess");
-    } catch (err) { 
+    } catch (err) {
       console.log("set loading to false");
       setLoading2(false);
       console.log(err);
@@ -378,11 +426,8 @@ export default function Form() {
         iconTheme: {
           primary: "#713200",
           secondary: "#FFFAEE",
-          
         },
       });
-
-     
     }
 
     setLoading2(false);
@@ -390,21 +435,13 @@ export default function Form() {
 
   console.log(form);
 
-
   // form not started
   if (!hasStarted) {
     return (
       <div className="h-screen w-screen flex items-center justify-center">
         <div className="fixed bottom-1 sm:block left-1 hidden">
-          <div 
-            className="bg-black py-1 px-3"
-          >
-            <p 
-              className="text-[15px] text-white"
-              
-            >
-              Powered by | Querify
-            </p>
+          <div className="bg-black py-1 px-3">
+            <p className="text-[15px] text-white">Powered by | Querify</p>
           </div>
         </div>
 
@@ -460,12 +497,10 @@ export default function Form() {
       </div>
     );
   }
-  return loading  ? (
+  return loading ? (
     <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />
   ) : (
-    <div className={`w-screen h-screen min-h-screen bg-[#ffffff] relative`}> 
-
-
+    <div className={`w-screen h-screen min-h-screen bg-[#ffffff] relative`}>
       <motion.div
         className={` h-screen w-screen fixed z-[1000] left-0 bg-[#0000009a] flex items-center justify-center`}
         animate={{
@@ -687,10 +722,7 @@ export default function Form() {
                       }}
                     >
                       {loading2 ? (
-                        <ClipLoader
-                          color="#000000"
-                          className=""
-                        />
+                        <ClipLoader color="#000000" className="" />
                       ) : (
                         " Submit Response"
                       )}
@@ -725,24 +757,34 @@ export default function Form() {
 
       {/* Progress Bar */}
 
-      <div 
-        className="h-[5px] fixed top-0 w-screen bg-[#0000001d]"
-      >
+      <div className="h-[5px] fixed top-0 w-screen bg-[#0000001d]">
         <div
           className={`h-full  transition-all duration-200 ease-out`}
-          style={{backgroundColor:form?.visualData.queColor, width :((form?.data.indexOf(!currentQue ? 0 : currentQue) + 1) / form?.data.length)*100 + "%"}}
-        >
-
-        </div>
+          style={{
+            backgroundColor: form?.visualData.queColor,
+            width:
+              ((form?.data.indexOf(!currentQue ? 0 : currentQue) + 1) /
+                form?.data.length) *
+                100 +
+              "%",
+          }}
+        ></div>
       </div>
 
       <div className="w-full h-full flex justify-between relative">
-        <div className="xbs:w-[50%] w-full h-full flex xbs:px-[30px] px-[15px] justify-center items-center overflow-visible z-[1] bg-center bg-cover relative" style={{backgroundImage:windowSize < 500 ? `url(${formImg1})`: ""}}>
-            {form && queProvider()}
+        <div
+          className="xbs:w-[50%] w-full h-full flex xbs:px-[30px] px-[15px] justify-center items-center overflow-visible z-[1] bg-center bg-cover relative"
+          style={{
+            backgroundImage: windowSize < 500 ? `url(${formImg1})` : "",
+          }}
+        >
+          {form && queProvider()}
 
-            <div className="absolute top-5 left-5 text-[#656564] text-[14px]">{(form?.data.indexOf(currentQue) + 1)+ " / " + form?.data.length}</div>
+          <div className="absolute top-5 left-5 text-[#656564] text-[14px]">
+            {form?.data.indexOf(currentQue) + 1 + " / " + form?.data.length}
+          </div>
 
-            {/* <motion.div 
+          {/* <motion.div 
               className="absolute bottom-3 right-3 focus-info h-[40px] w-max bg-zinc-700 flex items-center justify-center text-white p-[10px] text-[13px] rounded-md z-[99]"
               
               animate={{
@@ -768,43 +810,65 @@ export default function Form() {
         </div>
         <div className="lg:max-w-[50%] lg:min-w-[50%] max-w-[40%] min-w-[40%] xbs:flex hidden h-full  justify-center items-center">
           <img
-            className={` object-cover flex items-center justify-center  ${form?.visualData.layout === "sr" || form?.visualData.layout === "sl" ? "w-[50%] h-[450px]" : form?.visualData.layout === "f" ? "w-full h-full" : "w-full h-full"}`}
+            className={` object-cover flex items-center justify-center  ${
+              form?.visualData.layout === "sr" ||
+              form?.visualData.layout === "sl"
+                ? "w-[50%] h-[450px]"
+                : form?.visualData.layout === "f"
+                ? "w-full h-full"
+                : "w-full h-full"
+            }`}
             src={formImg1}
             alt="formImg"
           />
         </div>
       </div>
-      
+
       {/* Next prev navigator */}
       <div className="absolute bottom-[28px] right-[28px] flex  h-[32px] gap-3 z-[10]">
-                <div className="w-[74px] h-full  flex rounded-sm">
-                    <button 
-                      className="w-[50%] flex justify-center items-center bg-[#0445af] hover:bg-[#2a61bb] transition-all duration-100 cursor-pointer"
-                      onClick={()=> updateCurrentQue(form.data.indexOf(currentQue) === form.data.length - 1 ? form.data[0] :  form.data[form.data.indexOf(currentQue) + 1])}
-                    >
-                      <IoIosArrowDown className="fill-white text-[20px]"/>
-                    </button>
-                    <div className="h-full w-[2px] bg-[#3461bc]"></div>`
-                    <button 
-                      className="w-[50%] flex justify-center items-center bg-[#0445af] hover:bg-[#2a61bb] transition-all duration-100 cursor-pointer"
-                      onClick={()=> updateCurrentQue(form.data.indexOf(currentQue) === 0 ? form.data[form.data.length -1] :  form.data[form.data.indexOf(currentQue) - 1])}
-                    >
-                    <IoIosArrowUp className="fill-white text-[20px]"/>
-                    </button>
-                </div>
+        <div className="w-[74px] h-full  flex rounded-sm">
+          <button
+            className="w-[50%] flex justify-center items-center bg-[#0445af] hover:bg-[#2a61bb] transition-all duration-100 cursor-pointer"
+            onClick={() =>
+              updateCurrentQue(
+                form.data.indexOf(currentQue) === form.data.length - 1
+                  ? form.data[0]
+                  : form.data[form.data.indexOf(currentQue) + 1]
+              )
+            }
+          >
+            <IoIosArrowDown className="fill-white text-[20px]" />
+          </button>
+          <div className="h-full w-[2px] bg-[#3461bc]"></div>`
+          <button
+            className="w-[50%] flex justify-center items-center bg-[#0445af] hover:bg-[#2a61bb] transition-all duration-100 cursor-pointer"
+            onClick={() =>
+              updateCurrentQue(
+                form.data.indexOf(currentQue) === 0
+                  ? form.data[form.data.length - 1]
+                  : form.data[form.data.indexOf(currentQue) - 1]
+              )
+            }
+          >
+            <IoIosArrowUp className="fill-white text-[20px]" />
+          </button>
+        </div>
 
-                <div 
-                  className="h-full px-[10px] py-[5px] bg-[#0445af] hover:bg-[#2a61bb] rounded-sm  transition-all duration-100 cursor-pointer"
-                  onClick={()=> navigate("/")}
-                >
-                   <p className="flex items-center text-white text-[14px]">powered by <span className="font-semibold text-white text-[14px]">&nbsp;Querify</span></p>
-                </div>
+        <div
+          className="h-full px-[10px] py-[5px] bg-[#0445af] hover:bg-[#2a61bb] rounded-sm  transition-all duration-100 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          <p className="flex items-center text-white text-[14px]">
+            powered by{" "}
+            <span className="font-semibold text-white text-[14px]">
+              &nbsp;Querify
+            </span>
+          </p>
+        </div>
       </div>
-        
     </div>
   );
 }
-
 
 /* <div className="flex flex-col gap-3 w-[50%] ">
                                 <div className="flex gap-2 flex-col w-full">
